@@ -4,7 +4,7 @@ import { PrismaClient } from '@prisma/client'
 
 const Prisma = new PrismaClient()
 const admrouter = express.Router()
-
+admrouter.use(express.json())
 admrouter.get("/users", async (req,res) =>{
     try{
         const users = await Prisma.user.findMany();
@@ -15,10 +15,10 @@ admrouter.get("/users", async (req,res) =>{
         res.status(500).json({ error: "Erro ao buscar usuários" });
     }})
 
-    admrouter.delete("del", async(req,res) =>{
+    admrouter.delete("/del", async(req,res) =>{
         try{
             const {id, email} = req.body
-            const user = Prisma.user.findUnique({
+            const user = await Prisma.user.findUnique({
                 where:{
                     id: id,
                     email: email
