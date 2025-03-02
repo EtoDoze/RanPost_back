@@ -9,7 +9,7 @@ const transporter = nodemailer.createTransport({
 });
 
 export const sendVerificationEmail = async (email, token) => {
-  const verificationLink = `http://localhost:3000/verify-email?token=${token}`;
+  const verificationLink = `https://ranpost-backend.onrender.com/verify-email?token=${token}`;
   console.log("Link de verificação:", verificationLink); // Log para depuração
 
   const mailOptions = {
