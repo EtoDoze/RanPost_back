@@ -1,6 +1,7 @@
 import admrouter from "./routes/admin.js"
 import signroute from "./routes/sign.js"
-import emailrouter from "./routes/Emailver.js"
+import emailrouter from './routes/Emailver.js';
+import postrouter from './routes/posts.js';
 import dotenv from "dotenv";
 import express, { json } from "express"
 import { PrismaClient } from '@prisma/client'
@@ -13,6 +14,7 @@ app.use(cors());
 app.use(admrouter)
 app.use(signroute)
 app.use(emailrouter)
+app.use(postrouter)
 app.use(express.json())
 
 app.get("/", async (req,res) =>{
